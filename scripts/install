@@ -41,6 +41,8 @@ ynh_user_exists $admin
 arch=$(uname -m)
 if [ $arch == "x86_64" ]; then
 	arch="x64"
+elif [ $arch == "armv6l" ]; then
+	arch="armv7l"
 fi
 if [[ $arch != "x64" && $arch != "armv7l" ]]; then
 	ynh_die "$arch is not supported." 2
