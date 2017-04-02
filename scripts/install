@@ -21,6 +21,12 @@ source functions.sh
 sudo yunohost app checkurl "${domain}${path}" -a "$app" \
     || ynh_die "Path not available: ${domain}${path}"
 
+# Check there is a valid certificate
+cert=$(sudo yunohost domain cert-status ${domain} | grep "CA_type")
+if [ $cert == "    CA_type: Self-signed" ]; then
+  ynh_die "${domain} must have a valid certificate installed"
+fi
+
 # Check port availability
 sudo yunohost app checkport $port
 if [[ ! $? -eq 0 ]]; then
