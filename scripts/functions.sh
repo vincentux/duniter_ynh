@@ -2,7 +2,7 @@
 
 INSTALL_DUNITER_DEBIAN_PACKAGE () {
 # Retrieve url of last version and version number
-url=$(curl -s https://github.com/duniter/duniter/releases/tag/v1.5.1 | grep "browser_" | grep $arch | grep "linux" | grep "server" | sort -r | head -1 | cut -d\" -f4)
+url=$(curl -s https://github.com/duniter/duniter/releases/download/v1.5.1/duniter-server-v1.5.1-linux-armv7l.deb | grep "browser_" | grep $arch | grep "linux" | grep "server" | sort -r | head -1 | cut -d\" -f4)
 version=$(echo $url | cut -d/ -f8)
 
 # Retrieve debian package and install it
